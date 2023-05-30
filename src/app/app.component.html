@@ -10,7 +10,24 @@
     <mat-divider></mat-divider>
     <mat-card-content class="card-content">
 
-      <!-- TODO: Add instructions -->
+      <div id="instructions-text">
+        <p>How to use this site:</p>
+        <ol>
+          <li>Go to <a href="https://www.biblegateway.com" target="_blank">BibleGateway.com</a>
+            and copy the verses you would like to use.</li>
+          <li>Paste the verses into the text box below and choose your desired options for cleaning.</li>
+          <li>Click "Submit".</li>
+        </ol>
+        <p>
+          The cleaned verses will be displayed in the Results card below.
+          You can click the icon in the upper right-hand corner to easily copy them.
+        </p>
+
+        <p><em>
+          <b>Disclaimer:</b> Errors may occur if your input does not conform to the expected format.
+          Please review your results carefully before using them.
+        </em></p>
+      </div>
 
       <mat-form-field id="verses-form-field">
         <mat-label>Text</mat-label>
@@ -30,24 +47,33 @@
         <mat-checkbox class="options-checkbox" [color]="'accent'" [(ngModel)]="insertNewlines">
           One line per verse
         </mat-checkbox>
+        <mat-checkbox class="options-checkbox" [color]="'accent'" [(ngModel)]="preserveWhitespace">
+          Preserve whitespace
+        </mat-checkbox>
       </div>
 
       <button mat-raised-button id="clean-button" type="button" [color]="'primary'" [disabled]="!versesText.value"
-          (click)="cleanVerses(versesText.value)">Clean</button>
+          (click)="cleanVerses(versesText.value)">Submit</button>
       <button mat-flat-button id="reset-button" type="button" (click)="versesText.value = ''; results = '';">Reset</button>
     </mat-card-content>
   </mat-card>
 
-  <mat-card id="results-card" class="card" *ngIf="results">
+  <mat-card id="results-card" class="card">
     <mat-card-header class="card-header">
       <span>Results</span>
-      <button mat-icon-button id="copy-button" type="button" (click)="copyResults()" matTooltip="Copy results">
+      <button mat-icon-button id="copy-button" type="button" matTooltip="Copy results" (click)="copyResults()"
+          [disabled]="!results">
         <mat-icon>content_copy</mat-icon>
       </button>
     </mat-card-header>
     <mat-divider></mat-divider>
     <mat-card-content class="card-content">
-      <div id="results-text">{{ results }}</div>
+      <div id="no-results-text" *ngIf="!results"><i>No results to display. Please submit verses first.</i></div>
+      <div id="results-text" *ngIf="results">{{ results }}</div>
     </mat-card-content>
   </mat-card>
+
+  <footer>
+    <div>&#169; {{ currentYear }}. All rights reserved.</div>
+  </footer>
 </div>

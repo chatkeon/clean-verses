@@ -32,14 +32,12 @@
   flex: 1 0 auto;
 }
 
-#copy-button {
-  margin-top: -4px;
-  margin-right: -4px;
-  flex: 0 0 auto;
-}
-
 .card-content {
   padding: 16px;
+}
+
+#instructions-text {
+  margin-bottom: 32px;
 }
 
 #verses-form-field {
@@ -61,6 +59,22 @@
   display: block;
 }
 
+#copy-button {
+  margin-top: 0px;
+  margin-right: -4px;
+  flex: 0 0 auto;
+}
+
+#no-results-text {
+  text-align: center;
+  padding: 32px;
+}
+
 #results-text {
   white-space: break-spaces;
+}
+
+footer {
+  width: 100%;
+  text-align: center;
 }
