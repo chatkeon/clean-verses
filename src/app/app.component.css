@@ -1,0 +1,78 @@
+/* TODO: Fix color mismatches */
+
+#header {
+  position: fixed;
+  width: 100%;
+  top: 0;
+  color: white;
+  background-color: #475664;
+  box-shadow: 0 0 10px rgb(0,0,0);
+  -webkit-box-shadow: 0 0 10px rgb(0,0,0);
+  -moz-box-shadow: 0 0 10px rgb(0,0,0);
+  z-index: 10;
+}
+
+#main {
+  padding: 100px 32px 32px;
+}
+
+#main > .card {
+  margin: 0 auto 32px;
+  width: 80%;
+  max-width: 1000px;
+}
+
+.card-header {
+  font-size: 24px;
+  font-weight: bold;
+  padding: 16px;
+  height: 48px;
+  display: flex;
+  align-items: center;
+  flex-wrap: nowrap;
+}
+
+.card-header > span {
+  flex: 1 0 auto;
+}
+
+#copy-button {
+  margin-top: -4px;
+  margin-right: -4px;
+  flex: 0 0 auto;
+}
+
+.card-content {
+  padding: 16px;
+}
+
+#verses-form-field {
+  display: block;
+  width: 100%;
+}
+
+#verses-form-field textarea {
+  min-height: 80px;
+}
+
+#options-list {
+  display: block;
+  margin-bottom: 32px;
+}
+
+#options-list > .options-checkbox {
+  display: block;
+}
+
+#clean-button {
+  color: white;
+  background-color: #475664;
+}
+
+#clean-button[disabled="true"] {
+  opacity: 0.5;
+}
+
+#results-text {
+  white-space: break-spaces;
+}
