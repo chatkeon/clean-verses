@@ -35,8 +35,10 @@ export class AppComponent {
       cleanedVerses = cleanedVerses.replace(/HEADING_(.+)_HEADING\n/g, '\n$1\n\n');
     }
 
+    // TODO: Remove excessive newlines / add option for removing newlines
+
     // Clean up
-    cleanedVerses = cleanedVerses.replace(/\n\n+/g, '\n\n').replace(/\n /g, '\n').trim();
+    cleanedVerses = cleanedVerses.replace(/\n\n+/g, '\n').replace(/\n /g, '\n').trim();
 
     this.results = cleanedVerses;
   }

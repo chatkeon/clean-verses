@@ -1,11 +1,7 @@
-/* TODO: Fix color mismatches */
-
 #header {
   position: fixed;
   width: 100%;
   top: 0;
-  color: white;
-  background-color: #475664;
   box-shadow: 0 0 10px rgb(0,0,0);
   -webkit-box-shadow: 0 0 10px rgb(0,0,0);
   -moz-box-shadow: 0 0 10px rgb(0,0,0);
@@ -53,6 +49,7 @@
 
 #verses-form-field textarea {
   min-height: 80px;
+  max-height: 2000px;
 }
 
 #options-list {
@@ -62,15 +59,6 @@
 
 #options-list > .options-checkbox {
   display: block;
-}
-
-#clean-button {
-  color: white;
-  background-color: #475664;
-}
-
-#clean-button[disabled="true"] {
-  opacity: 0.5;
 }
 
 #results-text {

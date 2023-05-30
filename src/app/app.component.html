@@ -1,5 +1,5 @@
-<mat-toolbar id="header">
-  <span>Placeholder</span>
+<mat-toolbar [color]="'primary'" id="header">
+  <span>Clean Verses</span>
 </mat-toolbar>
 
 <div id="main">
@@ -9,20 +9,30 @@
     </mat-card-header>
     <mat-divider></mat-divider>
     <mat-card-content class="card-content">
-      <!-- Add instructions -->
+
+      <!-- TODO: Add instructions -->
+
       <mat-form-field id="verses-form-field">
         <mat-label>Text</mat-label>
         <textarea matInput cdkTextareaAutosize #versesText></textarea>
       </mat-form-field>
 
       <div id="options-list">
-        <mat-checkbox class="options-checkbox" [(ngModel)]="removeVerseNumbers">Remove verse numbers</mat-checkbox>
-        <mat-checkbox class="options-checkbox" [(ngModel)]="removeHeadings">Remove headings</mat-checkbox>
-        <mat-checkbox class="options-checkbox" [(ngModel)]="removeFootnotes">Remove footnote indicators</mat-checkbox>
-        <mat-checkbox class="options-checkbox" [(ngModel)]="insertNewlines">One line per verse</mat-checkbox>
+        <mat-checkbox class="options-checkbox" [color]="'accent'" [(ngModel)]="removeVerseNumbers">
+          Remove verse numbers
+        </mat-checkbox>
+        <mat-checkbox class="options-checkbox" [color]="'accent'" [(ngModel)]="removeHeadings">
+          Remove headings
+        </mat-checkbox>
+        <mat-checkbox class="options-checkbox" [color]="'accent'" [(ngModel)]="removeFootnotes">
+          Remove footnote indicators
+        </mat-checkbox>
+        <mat-checkbox class="options-checkbox" [color]="'accent'" [(ngModel)]="insertNewlines">
+          One line per verse
+        </mat-checkbox>
       </div>
 
-      <button mat-raised-button id="clean-button" type="button" [disabled]="!versesText.value"
+      <button mat-raised-button id="clean-button" type="button" [color]="'primary'" [disabled]="!versesText.value"
           (click)="cleanVerses(versesText.value)">Clean</button>
       <button mat-flat-button id="reset-button" type="button" (click)="versesText.value = ''; results = '';">Reset</button>
     </mat-card-content>
