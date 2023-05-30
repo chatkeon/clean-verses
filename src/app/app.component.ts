@@ -9,6 +9,7 @@ export class AppComponent {
   private readonly HEADING_REGEX: RegExp = new RegExp('\n([^\s\n]+)(\n[0-9]+ )', 'g');
   private readonly FIRST_NUMBER_REGEX: RegExp = new RegExp('([0-9]+) ');
   private readonly VERSE_NUMBER_REGEX: RegExp = new RegExp('^[0-9]+');
+  private readonly CHAPTER_START_REGEX: RegExp = new RegExp('^([0-9]+) (.+)( ?2 )');
   private readonly FOOTNOTE_REGEX: RegExp = new RegExp('(\\[[a-z]+\\])+', 'gi');
 
   removeVerseNumbers: boolean = false;
@@ -31,7 +32,7 @@ export class AppComponent {
     }
 
     if (this.insertNewlines) {
-      cleanedVerses = cleanedVerses.replace(/ *(VERSE_[0-9]+_VERSE)/g, '\n$1');
+      cleanedVerses = cleanedVerses.replace(/[\s\n]*(VERSE_[0-9]+_VERSE)/g, '\n$1');
     }
 
     if (this.removeFootnotes) {
@@ -53,7 +54,7 @@ export class AppComponent {
     this.results = cleanedVerses.trim();
   }
 
-  processText(textToProcess: string): string {
+  private processText(textToProcess: string): string {
     let processedText;
 
     // Add a newline at the beginning - needed for the heading regex to process correctly
@@ -70,15 +71,25 @@ export class AppComponent {
       let verseNum = unprocessedText.join('').match(this.VERSE_NUMBER_REGEX)![0];
       let nextVerseRegex = new RegExp(`^${verseNum} `);
       while (unprocessedText.length > 0) {
+        // Start of next verse
         if (nextVerseRegex.test(unprocessedText.join(''))) {
           processedText += `VERSE_${verseNum}_VERSE`;
           unprocessedText.splice(0, verseNum.length);
-
-          // TODO: Add handling for chapter numbers
           verseNum = `${parseInt(verseNum) + 1}`;
           nextVerseRegex = new RegExp(`^${verseNum} `);
+
+        // Start of next chapter
+        } else if (this.CHAPTER_START_REGEX.test(unprocessedText.join(''))) {
+          const chapterNum = unprocessedText.join('').match(this.VERSE_NUMBER_REGEX)![0];
+          processedText += 'VERSE_1_VERSE';
+          unprocessedText.splice(0, chapterNum.length);
+          verseNum = '2';
+          nextVerseRegex = new RegExp('^2 ');
+
+        // Same verse
         } else {
           processedText += unprocessedText.shift();
+
         }
       }
     } else {
