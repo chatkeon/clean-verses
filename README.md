@@ -6,5 +6,6 @@ Intended for use with passages from [BibleGateway.com.](https://www.biblegateway
 ## Known Issues
 - Code is unable to detect the start of a new chapter if only the first verse of the chapter is included
 
-## Additional Work
+## TODO
 - Add unit tests
+- Expand documentation

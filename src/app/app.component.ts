@@ -13,10 +13,10 @@ export class AppComponent {
   private readonly FOOTNOTE_REGEX: RegExp = new RegExp('(\\[[a-z]+\\])+', 'gi');
 
   removeVerseNumbers: boolean = false;
-  removeHeadings: boolean = false;
+  removeHeadings: boolean = true;
   removeFootnotes: boolean = true;
   insertNewlines: boolean = true;
-  preserveWhitespace: boolean = true;
+  preserveWhitespace: boolean = false;
   results: string = '';
   currentYear: string = '';
 
